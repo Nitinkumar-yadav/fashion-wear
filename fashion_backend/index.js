@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 // Database Connection with MONGODB
-mongoose.connect("mongodb+srv://fashionwear:Tiger123@cluster0.7qgkozm.mongodb.net/fashion-wear");
+mongoose.connect("");
 
 
 //  APIs Creation 
