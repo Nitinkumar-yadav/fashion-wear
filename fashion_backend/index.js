@@ -122,8 +122,85 @@ app.post('/removeproduct',async(req,res)=>{
 // Creating APIs for All Products
 app.get('/allproducts',async(req,res)=>{
     let products = await Product.find({});
-    console.log("All Prpduct Fecthed");
+    console.log("All Product Fecthed"); // Image is not visible on admin ListProduct
     res.send(products);
+})
+
+
+// Schema Creating for user Model
+
+const Users = mongoose.model('Users',{
+    name:{
+        type:String,
+    },
+    email:{
+        type:String,
+        unique:true,
+    },
+    cartData:{
+        type:Object,
+    },
+    date:{
+        type:Date,
+        default:Date.now,
+    }
+})
+
+//  Creating Endpoint for registering the Users
+app.post('/signup',async(req,res)=>{
+
+    let check = await Users.findOne({email:req.body.email});
+    if(check){
+        return res.status(400).json({success:false, errors:"existing user found with same email Address"})
+    }
+    let cart = {};
+    for (let i = 0; i <200; i++) {
+        cart[i]=0;
+    }
+    const user = new  Users({
+        name:req.body.username,
+        email:req.body.email,
+        password:req.body.password,
+        cartData:cart,
+    })
+
+    await user.save();
+
+    const data ={
+        user:{
+            id:user.id
+        }
+    }
+
+    const token =jwt.sign(data,'sercet_code');
+    res.json({success:true,token})
+})
+
+// Creating User Endpoint for User login
+
+app.post('/login',async (req,res)=>{
+    let user =await Users.findOne({email:req.body.email});
+    console.log(req.body.password);
+    if(user){
+        const passCompare = req.body.password === user.password; // Wrong Password issue
+
+        if(passCompare){
+            const data ={
+                user:{
+                    id:user.id
+                }
+            }
+            const token =jwt.sign(data,'secret_codes');
+            res.json({success:true,token});
+        }
+        else{
+            res.json({success:false,errors:"Wrong Password"});
+            console.log(passCompare);
+        }
+    }
+    else{
+        res.json({success:false, errors:"Wrong Email Address"});
+    }
 })
 
 app.listen(port,(error)=>{
