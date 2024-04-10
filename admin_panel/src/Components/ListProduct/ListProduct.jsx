@@ -1,19 +1,32 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState} from 'react'
 import './listproduct.css'
 import cross_icon from '../../assets/cross_icon.png';
 
 const ListProduct = () => {
 
-  const [allproducts,setAllProducts] = useState([]);
+  const [allproduct,setAllProduct] = useState([]);
 
   const fetchInfo = async () => {
     await fetch('http://localhost:4000/allproducts')
     .then((res)=>res.json())
-    .then((data)=>{setAllProducts(data)});
+    .then((data)=>{setAllProduct(data)})
+    .catch((err)=>console.log(err));
   }
   useEffect(() => { 
     fetchInfo();
   },[])
+
+  const remove_product = async (id) => {
+    await fetch(`http://localhost:4000/removeproduct`,{
+      method:'POST',
+      headers:{
+          Accept:'application/json',
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({id:id})
+    })
+    await fetchInfo();
+  }
 
   return (
     <div className='list-product'>
@@ -28,17 +41,18 @@ const ListProduct = () => {
       </div>
       <div className="listproduct-allproducts">
         <hr/>
-        {allproducts.map((product,index)=>{
-          return(
+        {allproduct.map((product,index)=>{
+          return<>
             <div className="listproduct-format listproduct-format-main" key={index}>
-              <img src={product.image} alt="" />
-              <p>{product.title}</p>
+              <img src={product.image} alt='Product-Image' className='listproduct-product-icon' />
+              <p>{product.name}</p>
               <p>{product.category}</p>
-              <p>₹{product.oldprice}</p>
-              <p>₹{product.newprice}</p>
-              <img src={cross_icon} alt="" className="listproduct-remove-icon"/>
+              <p>₹{product.old_price}</p>
+              <p>₹{product.new_price}</p>
+              <img onClick={()=>{remove_product(product.id)}} src={cross_icon} alt="" className="listproduct-remove-icon"/>
             </div>
-          )
+            <hr/>
+          </>
         })}
       </div>
     </div>
