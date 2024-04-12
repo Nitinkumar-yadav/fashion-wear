@@ -8,13 +8,16 @@ const ListProduct = () => {
 
   const fetchInfo = async () => {
     await fetch('http://localhost:4000/allproducts')
-    .then((res)=>res.json())
-    .then((data)=>{setAllProduct(data)})
-    .catch((err)=>console.log(err));
-  }
-  useEffect(() => { 
+      .then((res) => res.json())
+      .then((data) => {
+        setAllProduct(data);
+      })
+      .catch((err) => console.log(err));
+  };
+  
+  useEffect(() => {
     fetchInfo();
-  },[])
+  }, []);
 
   const remove_product = async (id) => {
     await fetch(`http://localhost:4000/removeproduct`,{
@@ -27,6 +30,8 @@ const ListProduct = () => {
     })
     await fetchInfo();
   }
+
+  console.log(allproduct);
 
   return (
     <div className='list-product'>
@@ -42,9 +47,12 @@ const ListProduct = () => {
       <div className="listproduct-allproducts">
         <hr/>
         {allproduct.map((product,index)=>{
+        // {product}
           return<>
             <div className="listproduct-format listproduct-format-main" key={index}>
-              <img src={product.image} alt='Product-Image' className='listproduct-product-icon' />
+              
+              <img src={product.imageUrls} alt='Product-Image' className='listproduct-product-icon' />
+              {/* {product} */}
               <p>{product.name}</p>
               <p>{product.category}</p>
               <p>₹{product.old_price}</p>
