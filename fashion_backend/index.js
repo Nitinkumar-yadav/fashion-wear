@@ -1,12 +1,12 @@
-const port = 4000; 
 const express = require("express"); 
-const app =express(); 
+const cors =require("cors"); 
+const multer = require("multer"); 
 const mongoose = require("mongoose"); 
 const jwt = require("jsonwebtoken"); 
-const multer = require("multer"); 
 const path = require("path"); 
-const cors =require("cors"); 
 require("dotenv").config(); 
+const app =express(); 
+const port = process.env.PORT|| 4000; 
 const MONGOURI = process.env.MONGO_URL
 
 app.use(express.json());
