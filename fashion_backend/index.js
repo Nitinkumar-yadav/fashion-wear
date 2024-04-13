@@ -199,11 +199,12 @@ app.post('/login',async (req,res)=>{
             res.json({success:true,token});
         }
         else{
+            console.log("worng password");
             res.json({success:false,errors:"Wrong Password"});
         }
     }
     else{
-        res.json({success:false, errors:"Wrong Email Address"});
+        res.json({success:false, errors:"Wrong Email Address Or Password"});
     }
 })
 
@@ -216,30 +217,3 @@ app.listen(port,(error)=>{
     }
     
 })
-
-
-
-
-
-// require('dotenv').config();
-// const cors = require('cors');
-// const express = require('express')
-
-// const apiRoutes = require('./routes/api');
-// const {mongoDatabase} = require('./config/connection');
-
-// const app = express();
-// const port = process.env.PORT || 4000;
-
-// app.use(cors());
-// app.use(express.json());
-// try {
-//     mongoDatabase();
-//     app.use('/',apiRoutes);
-//     app.use('/images',express.static('upload/images'));
-//     app.listen(port,()=>{
-//         console.log(`Server is Running on http://localhost:${port}`)
-//     })
-// } catch (error) {
-//     console.log(error);
-// }
