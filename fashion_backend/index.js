@@ -199,13 +199,33 @@ app.post('/login',async (req,res)=>{
             res.json({success:true,token});
         }
         else{
-            console.log("worng password");
             res.json({success:false,errors:"Wrong Password"});
         }
     }
     else{
         res.json({success:false, errors:"Wrong Email Address Or Password"});
     }
+})
+
+// Creating Endpoint fro New Collection
+app.get('/newcollections',async(req,res)=>{
+    let products =await Product.find({});
+    let newcollection = products.slice(1).slice(-8);
+    console.log("newcollection Fetch");
+    res.send(newcollection);
+})
+
+// Creating endpoint for popular in women
+app.get('/popularinwomen',async(req,res)=>{
+    let products =await Product.find({category:"women"});
+    let popular_in_women = products.slice(0,4);
+    console.log("Popular in women Fetch");
+    res.send(popular_in_women);
+})
+
+// Creating endpoint for adding products in cartdata
+app.post('/addtocart',async(req,res)=>{
+
 })
 
 app.listen(port,(error)=>{
