@@ -132,6 +132,9 @@ app.get('/allproducts',async(req,res)=>{
 
 const Users = mongoose.model('Users',
 {
+    id:{
+        type:String,
+    },
     name:{
         type:String,
     },
@@ -179,7 +182,7 @@ app.post('/signup',async(req,res)=>{
         }
     }
    
-    const token =jwt.sign(data,'sercet_code');
+    const token =jwt.sign(data,'secret_code');
     res.json({success:true,token})
 })
 
@@ -195,7 +198,7 @@ app.post('/login',async (req,res)=>{
                     id:user.id
                 }
             }
-            const token =jwt.sign(data,'secret_codes');
+            const token =jwt.sign(data,'secret_code');
             res.json({success:true,token});
         }
         else{
@@ -231,9 +234,8 @@ const fetchUser = async (req,res,next)=>{
     }
     else{
         try {
-            const data = jwt.verify(token,'secret_codes');
+            const data = jwt.verify(token,'secret_code');
             res.user =  data.user;
-            consle.log(res.user);
             next();
         } catch (error) {
             res.status(401).send({errors:"Please authenticate using valid token"})
@@ -244,6 +246,10 @@ const fetchUser = async (req,res,next)=>{
 // Creating endpoint for adding products in cartdata
 app.post('/addtocart',fetchUser,async(req,res)=>{
     console.log(req.body,req.user);
+    let userData = await Users.findOne({_id:req.body.id});
+    userData.cartData[req.body.itemId] += 1;
+    await Users.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData});
+    res.send("Added")
      
 })
 
