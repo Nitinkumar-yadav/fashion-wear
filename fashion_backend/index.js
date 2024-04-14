@@ -225,7 +225,7 @@ app.get('/popularinwomen',async(req,res)=>{
 
 // Creating endpoint for adding products in cartdata
 app.post('/addtocart',async(req,res)=>{
-
+    log
 })
 
 app.listen(port,(error)=>{
