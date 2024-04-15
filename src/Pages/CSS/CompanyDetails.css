@@ -1,0 +1,27 @@
+.details{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding-left: 50px;
+    margin-top: 20px;
+    height: 130vh;
+}
+
+.details h1{
+    font-size: bolder;
+    font-weight: 700;
+    /* margin-top: 20px; */
+}
+.details hr {
+    width: 280px;
+    height: 6px;
+    border-radius: 10px;
+    background: #e21e1e;
+    margin-top: -30px;
+    outline: none;
+}
+
+.details p{
+ gap: 30px;
+ margin-top: 20px;
+}
