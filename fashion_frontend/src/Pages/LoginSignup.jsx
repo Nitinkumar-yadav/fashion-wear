@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './CSS/LoginSignUp.css'
 
-
 const LoginSignup = () => {
 
   const [state,setState] =useState("Login");
