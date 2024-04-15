@@ -30,6 +30,11 @@
 .footer-links li{
     cursor: pointer;
 }
+.footer-links a{
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
 
 .footer-socials-icon{
     display: flex;

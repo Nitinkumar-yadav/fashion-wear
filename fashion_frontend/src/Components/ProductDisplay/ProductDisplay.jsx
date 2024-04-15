@@ -1,4 +1,4 @@
-import React, {useState ,useContext } from 'react'
+import React, { useContext } from 'react'
 import './ProductDisplay.css'
 import star_icon from "../Assets/star_icon.png"
 import star_dull_icon from "../Assets/star_dull_icon.png"
@@ -7,15 +7,6 @@ import { ShopContext } from '../../Context/ShopContext'
 const ProductDisplay = (props) => {
     const {product} = props;
     const {addToCart} = useContext(ShopContext);
-    const [quantity, setQuantity] = useState(1);
-
-    const handleQuantityChange = (event) => {
-      setQuantity(parseInt(event.target.value));
-    };
-
-    const handleAddToCart = () => {
-      addToCart(product.id + quantity);
-    };
   return (
     <div className='productdisplay'>
       <div className="productdisplay_left">
@@ -56,13 +47,7 @@ const ProductDisplay = (props) => {
                 <div>XXL</div>
             </div>
         </div>
-        <div className="productdisplay-right-quantity">
-          <h1>Select Quantity</h1>
-          <button onClick={handleQuantityChange}>+</button>
-          {setQuantity}
-          <button onClick={()=>{setQuantity(quantity-1)}}>-</button>
-        </div>
-        <button onClick={handleAddToCart}>ADD TO CART</button>
+        <button onClick={()=>{addToCart(product.id)}}>ADD TO CART</button>
         <p className="productdisplay-right-category"><span>Category :</span>Women, T-Shirt, Crop Top</p>
         <p className="productdisplay-right-category"><span>Tags :</span>Modern, Latest</p>
       </div>

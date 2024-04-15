@@ -38,19 +38,19 @@ import p36_img from "./product_36.png";
 let all_product = [
   {
     id: 1,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    name: "Women Solid Jacket",
     category: "women",
     image: p1_img,
-    new_price: 50.0,
-    old_price: 80.5,
+    new_price: 285,
+    old_price: 699,
   },
   {
     id: 2,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    name: "Women Pink Top",
     category: "women",
     image: p2_img,
-    new_price: 85.0,
-    old_price: 120.5,
+    new_price: 250,
+    old_price: 500,
   },
   {
     id: 3,

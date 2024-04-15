@@ -10,6 +10,10 @@ import men_banner from './Components/Assets/banner_mens.png'
 import women_banner from './Components/Assets/banner_women.png'
 import kid_banner from './Components/Assets/banner_kids.png'
 import Footer from './Components/Footer/Footer';
+import CompanyDetails from './Pages/CompanyDetails';
+import Contact from './Pages/Contact';
+import NewCollections from './Components/NewCollections/NewCollections';
+import NewsLetter from './Components/NewsLetter/NewsLetter';
 
 function App() {
   return (
@@ -26,6 +30,11 @@ function App() {
          </Route>
          <Route path='/cart' element={<Cart/>}/>
          <Route path='/login' element={<LoginSignup/>}/>
+         <Route path='/company' element={<CompanyDetails/>}/>
+         <Route path='/contact' element={<Contact/>}/>
+         <Route path='/new' element={<NewCollections/>} />
+         <Route path='/subscription' element={<NewsLetter/>} />
+
        </Routes>
        <Footer/>
       </BrowserRouter>

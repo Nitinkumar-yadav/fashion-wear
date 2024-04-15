@@ -13,11 +13,10 @@ const Footer = () => {
          {/* <p>UNIQUE</p> */}
        </a>
        <ul className="footer-links">
-         <li >Company</li>
-         <li>Products</li>
-         <li>Offices</li>
-         <li>About</li>
-         <li>Contact</li>
+         <a href='/'>Products</a>
+         <a href='/company'>Offices</a>
+         <a href='/company'>About</a>
+         <a href='/contact'>Contact</a>
        </ul>
        <div className="footer-socials-icon">
          <div className="footer-icons-container">
