@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import './ProductDisplay.css'
 import star_icon from "../Assets/star_icon.png"
 import star_dull_icon from "../Assets/star_dull_icon.png"
@@ -6,7 +6,29 @@ import { ShopContext } from '../../Context/ShopContext'
 
 const ProductDisplay = (props) => {
     const {product} = props;
-    const {addToCart} = useContext(ShopContext);
+    const {addToCart, updateSelectedSize,updateQuantity} = useContext(ShopContext);
+    const [selectedSize, setSelectedSize] = useState(null);
+    const [quantity, setQuantity] = useState(1);
+
+    const handleSizeClick = (size) => {
+      setSelectedSize(size);
+      updateSelectedSize(product.id, size);
+    };
+
+  const handleQuantityIncrement = () => {
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    updateQuantity(product.id, newQuantity);
+  };
+
+  const handleQuantityDecrement = () => {
+    if (quantity > 1) {
+      const newQuantity = quantity - 1;
+      setQuantity(newQuantity);
+      updateQuantity(product.id, newQuantity);
+    }
+  };
+
   return (
     <div className='productdisplay'>
       <div className="productdisplay_left">
@@ -40,15 +62,19 @@ const ProductDisplay = (props) => {
         <div className="productdisplay-right-size">
             <h1>Select Size</h1>
             <div className="productdisplay-right-sizes">
-                <div>S</div>
-                <div>M</div>
-                <div>L</div>
-                <div>XL</div>
-                <div>XXL</div>
-            </div>
+            <div className={`size-option ${selectedSize === 'S'   ? 'selected' : ''}`} onClick={() => handleSizeClick('S')}>S</div>
+            <div className={`size-option ${selectedSize === 'M'   ? 'selected' : ''}`} onClick={() => handleSizeClick('M')}>M</div>
+            <div className={`size-option ${selectedSize === 'L'   ? 'selected' : ''}`} onClick={() => handleSizeClick('L')}>L</div>
+            <div className={`size-option ${selectedSize === 'XL'  ? 'selected' : ''}`} onClick={() => handleSizeClick('XL')}>XL</div>
+            <div className={`size-option ${selectedSize === 'XXL' ? 'selected' : ''}`} onClick={() => handleSizeClick('XXL')}>XXL</div>
+          </div>
         </div>
-        <button onClick={()=>{addToCart(product.id)}}>ADD TO CART</button>
-        <p className="productdisplay-right-category"><span>Category :</span>Women, T-Shirt, Crop Top</p>
+        <div className="productdisplay-right-quantity">
+        <h1>Quantity</h1>
+          <div className='btn' onClick={handleQuantityDecrement}>-</div>{quantity}<div className='btn' onClick={handleQuantityIncrement}>+</div>
+        </div> 
+        <button onClick={() => addToCart(product.id)}>ADD TO CART</button>
+        <p className="productdisplay-right-category"><span>Category :</span> {product.name}</p>
         <p className="productdisplay-right-category"><span>Tags :</span>Modern, Latest</p>
       </div>
     </div>

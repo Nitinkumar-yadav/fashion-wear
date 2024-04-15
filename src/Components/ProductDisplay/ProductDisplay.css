@@ -55,18 +55,20 @@
 .productdisplay-right-prices-new{
     color: #ff4141;
 }
-.productdisplay-right-size h1{
+.productdisplay-right-size h1 {
     margin-top: 55px;
     color: #656565;
     font-size: 20px;
     font-weight: 600;
-}
-.productdisplay-right-sizes{
+  }
+  
+  .productdisplay-right-sizes {
     display: flex;
     margin: 30px 0px;
-    gap:20px;
-}
-.productdisplay-right-sizes div{
+    gap: 20px;
+  }
+  
+  .productdisplay-right-sizes div {
     padding: 18px 24px;
     display: flex;
     background: #fbfbfb;
@@ -74,12 +76,54 @@
     border-radius: 3px;
     cursor: pointer;
     transition: all 0.3s ease;
-}
-.productdisplay-right-sizes div:hover{
-    /* cursor: move; */
-    background: rgb(111, 111, 161);
+  }
+  
+  .productdisplay-right-sizes div:hover {
+    cursor: pointer;
+    background: rgb(114, 114, 235);
     color: white;
-}
+    border: none;
+  }
+  
+  .productdisplay-right-sizes div.selected {
+    background-color: rgba(71, 71, 233, 0.884);
+    color: white;
+    font-weight: bold;
+    border-color: rgb(111, 111, 161);
+    box-shadow: 0 0 10px rgba(111, 111, 161, 0.5);
+  }
+
+  .productdisplay-right-quantity {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .productdisplay-right-quantity h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #656565;
+    margin: 0;
+  }
+  .productdisplay-right-quantity div {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .productdisplay-right-quantity .btn {
+    padding: 5px 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .productdisplay-right-quantity a:hover {
+    background-color: #e0e0e0;
+  }
+  
 
 .productdisplay_right button{
     padding: 20px 40px;

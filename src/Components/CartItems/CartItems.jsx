@@ -7,7 +7,7 @@ const CartItems = () => {
     const {getTotalCartAmount,all_product,cartItems,removeFromCart} = useContext(ShopContext); 
 
     const ShippingCost =()=>{
-      if(getTotalCartAmount()>=500){
+      if(getTotalCartAmount()>=500 || getTotalCartAmount()===0){
         return 0;
       }
       else{
