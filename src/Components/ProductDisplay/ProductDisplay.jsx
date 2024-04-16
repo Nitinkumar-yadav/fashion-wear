@@ -6,26 +6,23 @@ import { ShopContext } from '../../Context/ShopContext'
 
 const ProductDisplay = (props) => {
     const {product} = props;
-    const {addToCart, updateSelectedSize,updateQuantity} = useContext(ShopContext);
+    const {addToCart} = useContext(ShopContext);
     const [selectedSize, setSelectedSize] = useState(null);
     const [quantity, setQuantity] = useState(1);
 
     const handleSizeClick = (size) => {
       setSelectedSize(size);
-      updateSelectedSize(product.id, size);
     };
 
   const handleQuantityIncrement = () => {
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
-    updateQuantity(product.id, newQuantity);
   };
 
   const handleQuantityDecrement = () => {
     if (quantity > 1) {
       const newQuantity = quantity - 1;
       setQuantity(newQuantity);
-      updateQuantity(product.id, newQuantity);
     }
   };
 

@@ -75,11 +75,11 @@ const LoginSignup = () => {
           
                           <input 
                             name='password' 
-                            maxLength={8}
+                            maxLength={10}
                             value={formData.password} 
                             onChange={changeHandler} 
                             type="password" 
-                            placeholder='Enter your password....(8 characters only)' required/>
+                            placeholder='Enter your password....(10 characters only)' required/>
         </div>
         <div className="loginsignup-agree">
           <input type="checkbox" name="" id="" />

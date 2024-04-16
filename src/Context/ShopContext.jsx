@@ -6,10 +6,7 @@ export const ShopContext = createContext(null);
 const getDefaultCart = () => {
     let cart = {};
     for (let index = 0; index < 200 + 1; index++) {
-      cart[index] = {
-        quantity: 1,
-        selectedSize: null,
-      };
+      cart[index] = 0;
     }
     return cart;
   };
@@ -29,48 +26,19 @@ const ShopContextProvider = (props) =>{
     },[])
     
     const addToCart = (itemId) => {
-        console.log(cartItems);
         setCartItems((prev) => ({
           ...prev,
-          [itemId]: {
-            ...prev[itemId],
-            quantity: prev[itemId]?.quantity ? prev[itemId].quantity + 1 : 1,
-          },
+          [itemId]: (prev[itemId] || 0 ) + 1,
         }));
       };
       
       const removeFromCart = (itemId) => {
-        setCartItems((prev) => {
-          const updatedCartItems = { ...prev };
-          if (updatedCartItems[itemId]?.quantity > 1) {
-            updatedCartItems[itemId].quantity -= 1;
-          } else {
-            delete updatedCartItems[itemId];
-          }
-          return updatedCartItems;
-        });
-      };
-    
-      const updateQuantity = (itemId, newQuantity) => {
         setCartItems((prev) => ({
-          ...prev,
-          [itemId]: {
-            ...prev[itemId],
-            quantity: newQuantity,
-          },
-        }));
+            ...prev,
+            [itemId]: prev[itemId] > 0 ? prev[itemId] - 1 : 0,
+          }));
       };
-
-      const updateSelectedSize = (itemId, size) => {
-        setCartItems((prev) => ({
-          ...prev,
-          [itemId]: {
-            ...prev[itemId],
-            selectedSize: size,
-          },
-        }));
-      };
-        
+            
     const getTotalCartAmount = () =>{
         let totalAmount = 0;
         for(const item in cartItems){
@@ -99,8 +67,6 @@ const ShopContextProvider = (props) =>{
         cartItems,
         addToCart,
         removeFromCart,
-        updateSelectedSize,
-        updateQuantity,
       };
 
     return (
@@ -109,5 +75,4 @@ const ShopContextProvider = (props) =>{
         </ShopContext.Provider>
     )
 }
-
 export default ShopContextProvider;
