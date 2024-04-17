@@ -11,9 +11,6 @@ const ProductDisplay = (props) => {
     const [quantity, setQuantity] = useState(1);
 
     const handleSizeClick = (size) => {
-       if(selectedSize === "M"){
-            setSelectedSize(product.new_price*20);
-          }
         setSelectedSize(size);
       };
   
@@ -59,7 +56,7 @@ const ProductDisplay = (props) => {
         </div>
         <div className="productdisplay-right-description">
           {product.description}
-          {product.Totalquantity > 0 ? <h3 style={{color:'green'}}>In Stock</h3> : <h3 style={{color:'red'}}>Out of Stock</h3>}
+          {product.total_quantity > 0 ? <h3 style={{color:'green'}}>In Stock</h3> : <h3 style={{color:'red'}}>Out of Stock</h3>}
         </div>
         <div className="productdisplay-right-size">
             <h1>Select Size</h1>
