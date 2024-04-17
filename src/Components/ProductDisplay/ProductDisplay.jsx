@@ -11,20 +11,24 @@ const ProductDisplay = (props) => {
     const [quantity, setQuantity] = useState(1);
 
     const handleSizeClick = (size) => {
-      setSelectedSize(size);
+       if(selectedSize === "M"){
+            setSelectedSize(product.new_price*20);
+          }
+        setSelectedSize(size);
+      };
+  
+    const handleQuantityIncrement = () => {
+      const newQuantity = quantity + 1;
+      setQuantity(newQuantity);
+    };
+  
+    const handleQuantityDecrement = () => {
+      if (quantity > 1) {
+        const newQuantity = quantity - 1;
+        setQuantity(newQuantity);
+      }
     };
 
-  const handleQuantityIncrement = () => {
-    const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
-  };
-
-  const handleQuantityDecrement = () => {
-    if (quantity > 1) {
-      const newQuantity = quantity - 1;
-      setQuantity(newQuantity);
-    }
-  };
 
   return (
     <div className='productdisplay'>
@@ -54,7 +58,8 @@ const ProductDisplay = (props) => {
             <div className="productdisplay-right-prices-new">₹{product.new_price}</div>
         </div>
         <div className="productdisplay-right-description">
-        Green solid insulator puffer jacket, has a stand collar, 2 pockets ,has a zip closure, long sleeves, straight hemline, polyester lining
+          {product.description}
+          {product.Totalquantity > 0 ? <h3 style={{color:'green'}}>In Stock</h3> : <h3 style={{color:'red'}}>Out of Stock</h3>}
         </div>
         <div className="productdisplay-right-size">
             <h1>Select Size</h1>
@@ -68,9 +73,9 @@ const ProductDisplay = (props) => {
         </div>
         <div className="productdisplay-right-quantity">
         <h1>Quantity</h1>
-          <div className='btn' onClick={handleQuantityDecrement}>-</div>{quantity}<div className='btn' onClick={handleQuantityIncrement}>+</div>
+          <div className='btn' onClick={{handleQuantityIncrement}}>-</div>{quantity}<div className='btn' onClick={{handleQuantityDecrement}}>+</div>
         </div> 
-        <button onClick={() => addToCart(product.id)}>ADD TO CART</button>
+        <button onClick={() => addToCart(product.id,product.quantity)}>ADD TO CART</button>
         <p className="productdisplay-right-category"><span>Category :</span> {product.name}</p>
         <p className="productdisplay-right-category"><span>Tags :</span>Modern, Latest</p>
       </div>

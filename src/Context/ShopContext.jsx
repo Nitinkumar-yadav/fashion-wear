@@ -23,13 +23,38 @@ const ShopContextProvider = (props) =>{
         .then((data)=>{
             setAllProduct(data);
         })
-    },[])
+        if(localStorage.getItem('auth-token')){
+          fetch('http://localhost:4000/getcart',{
+              method:'POST',
+              headers:{
+                  Accpet:'appplication/form-data',
+                  'auth-token':`${localStorage.getItem('auth-token')}`,
+                  'Content-Type':'application/json',
+              },
+              body:"",
+          }).then((response)=>response.json())
+          .then((data)=>setCartItems(data));
+      }
+  },[])
     
     const addToCart = (itemId) => {
         setCartItems((prev) => ({
           ...prev,
-          [itemId]: (prev[itemId] || 0 ) + 1,
+          [itemId]: prev[itemId]+1,
         }));
+        if(localStorage.getItem('auth-token')){
+          fetch('http://localhost:4000/addtocart',{
+              method:'POST',
+              headers:{
+                  Accpet:'application/from-data',
+                  'auth-token':`${localStorage.getItem('auth-token')}`,
+                  'Content-Type':'application/json',
+              },
+              body:JSON.stringify({'itemId':itemId})
+          })
+          .then((response)=>response.json())
+          .then((data)=>console.log(data))
+      }
       };
       
       const removeFromCart = (itemId) => {
@@ -37,7 +62,22 @@ const ShopContextProvider = (props) =>{
             ...prev,
             [itemId]: prev[itemId] > 0 ? prev[itemId] - 1 : 0,
           }));
+          if(localStorage.getItem('auth-token')){
+            fetch('http://localhost:4000/removefromcart',{
+                method:'POST',
+                headers:{
+                    Accpet:'application/from-data',
+                    'auth-token':`${localStorage.getItem('auth-token')}`,
+                    'Content-Type':'application/json',
+                },
+                body:JSON.stringify({'itemId':itemId})
+            })
+            .then((response)=>response.json())
+            .then((data)=>console.log(data))
+        }
       };
+
+    
             
     const getTotalCartAmount = () =>{
         let totalAmount = 0;

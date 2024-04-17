@@ -31,7 +31,8 @@
 .cartitems-quantity{
     width: 64px;
     height: 50px;
-    border: 2px solid #ebebeb;
+    border:none;
+    /* border: 2px solid #ebebeb; */
     background: #fff;
 }
 .cartitems-down{
