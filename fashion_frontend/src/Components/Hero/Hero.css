@@ -59,6 +59,7 @@
  
 .hero-right{
     flex: 1;
+    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
