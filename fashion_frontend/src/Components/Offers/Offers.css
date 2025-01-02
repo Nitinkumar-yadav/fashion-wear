@@ -1,8 +1,7 @@
 .offers{
     display: flex;
     width: 65%;
-    max-width: fit-content;
-    height: 60vh;
+    height: fit-content;
     max-width: fit-content;
     margin: auto;
     padding: 0px 140px;

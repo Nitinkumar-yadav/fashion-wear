@@ -1,13 +1,13 @@
 .news-letter{
     width: 65%;
     max-width: fit-content;
-    height: 40vh;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: auto;
-    padding: 0px 140px;
+    padding: 10px 140px;
     margin-bottom: 150px;
     background: linear-gradient(180deg,#fde1ff 0%,#e1ffea22 60%);
     gap: 30px;

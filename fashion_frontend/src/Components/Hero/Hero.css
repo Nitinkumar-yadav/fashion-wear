@@ -1,8 +1,7 @@
 .hero{
     width: 100%;
     max-width: 1280px;
-    height: 100vh;
-    min-height:fit-content;
+    height:fit-content;
     margin: 0 auto;
     background: linear-gradient(180deg , #fde1ff, #e1ffea22 60%);
     display: flex;
