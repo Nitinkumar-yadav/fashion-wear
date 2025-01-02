@@ -1,5 +1,6 @@
 .news-letter{
     width: 65%;
+    max-width: fit-content;
     height: 40vh;
     display: flex;
     flex-direction: column;
